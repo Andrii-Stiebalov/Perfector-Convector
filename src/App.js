@@ -162,12 +162,12 @@ function App() {
 
     <form  className='inputForm'> 
       <input 
-      tabIndex={-1}
-      type="text" 
-      className='changeSpaceInput'
-      placeholder='Change SPACE on:'
-      value={separator}
-      onChange={(event) => setSeparator(event.target.value)}
+        tabIndex={-1}
+        type="text" 
+        className='changeSpaceInput'
+        placeholder='Change SPACE on:'
+        value={separator}
+        onChange={(event) => setSeparator(event.target.value)}
       />
     </form>
     <div className='container'>

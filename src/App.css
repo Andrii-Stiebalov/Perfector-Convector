@@ -54,7 +54,7 @@ main {
   color: black;
 }
 
-.button{
+.button {
   font-family: "FuturaTLig";
   padding: 12px;
   min-width: 130px ;
@@ -65,7 +65,7 @@ main {
   transition: 0.1s;
 }
 
-.button:hover{
+.button:hover {
   transform: scale(1.1);
   transition: 0.08s;
 }
@@ -88,7 +88,7 @@ main {
   color: #FFFFFF;
 }
 
-.changeSpaceInput{
+.changeSpaceInput {
   height: 4vh;
   width: 30vw;
   padding: 5px 15px;
@@ -99,7 +99,7 @@ main {
   border: none;
 }
 
-.inputForm{
+.inputForm {
   margin-top: 7vh;
   display: flex;
   justify-content: center;
