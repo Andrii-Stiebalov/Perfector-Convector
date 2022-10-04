@@ -1,38 +1,131 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: "FuturaTLig";
+  src: url(fonts/FuturaTLigRegular.ttf);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background: linear-gradient(121.67deg, rgba(235, 244, 255, 0.5) 20.77%, rgba(0, 85, 251, 0.395) 104.86%);
+  backdrop-filter: blur(30px);
+  background-repeat: no-repeat;
+  height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.header {
+  margin: 36px auto 0;
+  background-color: white;
+  width: 1006px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.title {
+  font-family: "FuturaTLig";
+  font-size: 44px;
+  margin: 0;
+  line-height: 53px;
+  letter-spacing: 1.47em;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-transform: uppercase;
 }
 
-.App-link {
-  color: #61dafb;
+body {
+  margin: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+main {
+  display: flex;
+  justify-content: center;
+  margin-top: 13vh;
+  gap: 8px;
+}
+
+.fild {
+  background: linear-gradient(128.85deg, rgba(255, 255, 255, 0.6) 7.91%, rgba(66, 145, 255, 0.12) 100%);
+  box-shadow: inset 7px 3px 4px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  width: 20vw;
+  height: 30vh;
+  padding: 40px;
+  font-size: 20px;
+  min-width: 210px;
+  min-height: 210px;
+  color: black;
+}
+
+.button{
+  font-family: "FuturaTLig";
+  padding: 12px;
+  min-width: 130px ;
+  font-size: 25px;
+  border: none;
+  background: #FDFDFD;
+  border-radius: 8px;
+  transition: 0.1s;
+}
+
+.button:hover{
+  transform: scale(1.1);
+  transition: 0.08s;
+}
+
+.button:active {
+  background-color: #005EF4;
+  color: #FFFFFF;
+  transition: 0.08s;
+}
+
+.selectFild {
+  margin-top: 5vh;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.isActive {
+  background: linear-gradient(92.54deg, #FFFFFF -77.21%, #005EF4 71.09%);
+  color: #FFFFFF;
+}
+
+.changeSpaceInput{
+  height: 4vh;
+  width: 30vw;
+  padding: 5px 15px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  outline: none;
+  border: none;
+}
+
+.inputForm{
+  margin-top: 7vh;
+  display: flex;
+  justify-content: center;
+}
+
+.contact {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 5px 35px;
+  gap: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.contacts__link {
+  color: black;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.container {
+  margin: auto;
+  margin-top: 8vh;
+  justify-content: center;
+  flex-direction: row;
+  width: max-content;
 }
