@@ -129,7 +129,7 @@ function App() {
             name="" 
             value={outputValue}
             id="output" 
-            placeholder="result"
+            placeholder="Result"
             className="output fild"
             >
           </textarea>
