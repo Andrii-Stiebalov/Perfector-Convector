@@ -1,12 +1,14 @@
 import './App.css';
-import React from 'react';
+import React, { useRef } from 'react';
+import Hotkeys from 'react-hot-keys';
 
 function App() {
   const [inputValue, setInputValue] = React.useState('');
   // const [outputValue, setOutputValue] = React.useState('sdf');
-  const [selectedCase, setSelectedCase] = React.useState('');
+  const [selectedCase, setSelectedCase] = React.useState('caps');
   const [separator, setSeparator] = React.useState('');
   const [isUnderScore, setIsUnderScore] = React.useState(false);
+  const refInput = useRef(null) 
 
 
   console.log(selectedCase)
@@ -106,15 +108,87 @@ function App() {
 
   console.log(outputValue)
 
+ const handleFocus = (event) => {
+    event.target.select();
+  };
+
+  const onKeyClearField = (event) => {
+    if(event.code === 'Delete'){
+      setInputValue('');
+      refInput.current.focus()
+    }
+  }
+
+  const onKeyDownHotKeyX = () => {
+    if (!selectedCase) {
+      setSelectedCase('caps');
+      return
+    }
+    const currentIndex = buttons.findIndex(button => button.id === selectedCase);
+    const nextIndex = currentIndex + 1;
+    if (nextIndex > buttons.length - 1) {
+      setSelectedCase(buttons[0].id)
+      return
+    }
+    const nextCase = buttons[currentIndex + 1];
+    console.log(nextCase)
+    setSelectedCase(currentIndex)
+    setSelectedCase(nextCase.id)
+  }
+
+  const onKeyDownHotKeyZ = () => {
+    if (!selectedCase) {
+      setSelectedCase('ivers');
+      return
+    }
+    const currentIndex = buttons.findIndex(button => button.id === selectedCase);
+    const nextIndex = currentIndex - 1;
+    if (nextIndex < 0) {
+      setSelectedCase(buttons[buttons.length - 1].id)
+      return
+    }
+    const nextCase = buttons[nextIndex];
+    console.log(nextIndex)
+    setSelectedCase(currentIndex)
+    setSelectedCase(nextCase.id)
+  }
+
+
+  document.addEventListener('keydown', onKeyClearField )
+
 
   return (
-    <div class="area" >
-      <header class="header">
-       <h1 class="title">perfector</h1>
+    <>
+    <Hotkeys
+      keyName='alt+x'
+        filter={(event) => {
+          return true;
+        }}
+      onKeyDown={onKeyDownHotKeyX}
+    
+    />
+    <Hotkeys
+      keyName='alt+z'
+        filter={(event) => {
+          return true;
+        }}
+      onKeyDown={onKeyDownHotKeyZ}
+    />
+    <Hotkeys
+      keyName='alt+c'
+        filter={(event) => {
+          return true;
+        }}
+      onKeyDown={() => setIsUnderScore(!isUnderScore)}
+    />
+    <div className="area" >
+      <header className="header">
+       <h1 className="title">perfector</h1>
       </header>
       <main>
         <form action="">
           <textarea 
+            ref={refInput}
             name="" 
             id="input"
             value={inputValue}
@@ -131,19 +205,23 @@ function App() {
             id="output" 
             placeholder="Result"
             className="output fild"
+            onFocus={handleFocus}
+            readOnly
             >
           </textarea>
         </form>
       </main>
+      <div className="bottomField">
 
-    <div action="get" class="selectFild">
+    <div action="get" className="selectFild">
+      
 
     {buttons.map(button => {
       const {id, name} = button;
 
       return (
         <button 
-        tabIndex={-1}
+          onFocus={() => refInput.current.focus() }
           onClick={() => 
             onSetSelectedCase(id)} 
           className={`button ${selectedCase === id && 'isActive'}`} 
@@ -160,7 +238,7 @@ function App() {
         </button>
     </div>
 
-    <form  className='inputForm'> 
+    <form className='inputForm'> 
       <input 
         tabIndex={-1}
         type="text" 
@@ -172,12 +250,14 @@ function App() {
     </form>
     <div className='container'>
       <div className="contact">
-        <a href="/#" className="contacts__link" tabIndex={-1} >CONTACT US</a>
+        <a href="" className="contacts__link" tabIndex={-1} >CONTACT US</a>
         <a href="/#" className="contacts__link" tabIndex={-1} >HOTKEYS FOR QUICK WORK</a>
-        <a href="/#" className="contacts__link" tabIndex={-1} >DONATE TO ARMY OF UKRAINE</a>
+        <a href="https://war.ukraine.ua/donate/" className="contacts__link" tabIndex={-1} >DONATE TO ARMY OF UKRAINE</a>
       </div>
     </div>
   </div>
+  </div>
+  </>
   );
 }
 

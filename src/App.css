@@ -2,18 +2,39 @@
   font-family: "FuturaTLig";
   src: url(fonts/FuturaTLigRegular.ttf);
 }
+html{
+  position: relative;
+  height: 100%;
+}
 
 body {
   background: linear-gradient(121.67deg, rgba(235, 244, 255, 0.5) 20.77%, rgba(0, 85, 251, 0.395) 104.86%);
   backdrop-filter: blur(30px);
   background-repeat: no-repeat;
   height: 100vh;
+  max-height: 100vh;
+  max-width: 100vw;
+  overflow: hidden;
+  margin: 0;
+}
+
+.bottomField {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 5vh;
+  height: max-content;
 }
 
 .header {
-  margin: 36px auto 0;
+  margin: 2vh auto 2vh;
   background-color: white;
-  width: 1006px;
+  width: 50vw;
   background: rgba(255, 255, 255, 0.7);
   box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
@@ -21,17 +42,13 @@ body {
 
 .title {
   font-family: "FuturaTLig";
-  font-size: 44px;
+  font-size: 2vw;
   margin: 0;
   line-height: 53px;
   letter-spacing: 1.47em;
   display: flex;
   justify-content: center;
   text-transform: uppercase;
-}
-
-body {
-  margin: 0;
 }
 
 main {
@@ -46,12 +63,17 @@ main {
   box-shadow: inset 7px 3px 4px 3px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   width: 20vw;
-  height: 30vh;
+  height: 20vh;
   padding: 40px;
-  font-size: 20px;
-  min-width: 210px;
-  min-height: 210px;
+  font-size: 18px;
+  min-width: 2px;
+  min-height: 2px;
   color: black;
+}
+
+.fild::selection {
+  background-color: #005EF4; 
+  color: #FDFDFD;
 }
 
 .button {
@@ -80,7 +102,9 @@ main {
   margin-top: 5vh;
   display: flex;
   justify-content: center;
-  gap: 50px;
+  column-gap: 50px;
+  row-gap: 20px;
+  flex-wrap: wrap;
 }
 
 .isActive {
@@ -100,7 +124,6 @@ main {
 }
 
 .inputForm {
-  margin-top: 7vh;
   display: flex;
   justify-content: center;
 }
@@ -110,10 +133,10 @@ main {
   box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   padding: 5px 35px;
-  gap: 20px;
+  column-gap: 20px;
   display: flex;
   justify-content: center;
-  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .contacts__link {
@@ -122,10 +145,48 @@ main {
   text-decoration: none;
 }
 
+.contacts__link:hover {
+  color: #005EF4;
+}
+
 .container {
   margin: auto;
-  margin-top: 8vh;
+  margin-bottom: 8vh;
   justify-content: center;
   flex-direction: row;
-  width: max-content;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 500px) {
+  main {
+    flex-direction: column;
+    margin: 10px auto;
+    gap: 2vh;
+  } 
+
+  .button {
+    min-width: 30px;
+  }
+  
+  .bottomField{
+    gap: 2vh;
+    position: relative;
+  }
+
+  form {
+    display: flex;
+    justify-content: center;
+  }
+
+  .contacts__link{
+    font-size: 12px;
+  }
+
+  .selectFild {
+    margin-top: 2vh;
+  }
+
+  .fild{
+    width: 70%;
+  }
 }
