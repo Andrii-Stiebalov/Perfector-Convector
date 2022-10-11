@@ -3,7 +3,6 @@
   src: url(fonts/FuturaTLigRegular.ttf);
 }
 html{
-  position: relative;
   height: 100%;
 }
 
@@ -11,19 +10,12 @@ body {
   background: linear-gradient(121.67deg, rgba(235, 244, 255, 0.5) 20.77%, rgba(0, 85, 251, 0.395) 104.86%);
   backdrop-filter: blur(30px);
   background-repeat: no-repeat;
-  height: 100vh;
-  max-height: 100vh;
+  min-height: 100vh;
   max-width: 100vw;
-  overflow: hidden;
   margin: 0;
 }
 
 .bottomField {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -69,6 +61,7 @@ main {
   min-width: 2px;
   min-height: 2px;
   color: black;
+  scrollbar-color: #005EF4;
 }
 
 .fild::selection {

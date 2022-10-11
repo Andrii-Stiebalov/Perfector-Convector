@@ -1,6 +1,7 @@
 import './App.css';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Hotkeys from 'react-hot-keys';
+import { InputForm } from './InputForm';
 
 function App() {
   const [inputValue, setInputValue] = React.useState('');
@@ -8,7 +9,8 @@ function App() {
   const [selectedCase, setSelectedCase] = React.useState('caps');
   const [separator, setSeparator] = React.useState('');
   const [isUnderScore, setIsUnderScore] = React.useState(false);
-  const refInput = useRef(null) 
+  const [selectedValue, setSelectedValue] = useState('');
+  const refInput = useRef(null)
 
 
   console.log(selectedCase)
@@ -79,20 +81,22 @@ function App() {
       return inputValue;
     }
 
+    const value = selectedValue || inputValue;
+
     let result = '';
 
     switch (selectedCase) {
       case "caps":
-        result = inputValue.toLocaleUpperCase();
+        result =  value.toLocaleUpperCase();
         break;
       case 'lower' :
-        result = inputValue.toLowerCase();
+        result =  value.toLowerCase();
         break;
       case 'capital':
-        result = capitalCase(inputValue);
+        result = capitalCase(value);
         break;
       case 'ivers':
-        result = inversCase(inputValue);
+        result = inversCase(value);
         break;
 
         default:
@@ -106,10 +110,17 @@ function App() {
 
   const outputValue = changeCase();
 
-  console.log(outputValue)
+  // console.log(outputValue)
 
- const handleFocus = (event) => {
+
+  const selectionChangListener = () => setSelectedValue(getSelectionText())
+  
+  document.addEventListener('selectionchange', selectionChangListener)
+
+  const handleFocus = (event) => {
     event.target.select();
+
+     document.removeEventListener('selectionchange', selectionChangListener)
   };
 
   const onKeyClearField = (event) => {
@@ -118,6 +129,8 @@ function App() {
       refInput.current.focus()
     }
   }
+
+  document.addEventListener('keydown', onKeyClearField)
 
   const onKeyDownHotKeyX = () => {
     if (!selectedCase) {
@@ -153,10 +166,17 @@ function App() {
     setSelectedCase(nextCase.id)
   }
 
+  function getSelectionText() {
+    var text = "";
+    if (window.getSelection) {
+        text = window.getSelection().toString();
+    } else if (document.selection && document.selection.type !== "Control") {
+        text = document.selection.createRange().text;
+    }
 
-  document.addEventListener('keydown', onKeyClearField )
-
-
+    return text
+  } 
+ 
   return (
     <>
     <Hotkeys
@@ -186,18 +206,12 @@ function App() {
        <h1 className="title">perfector</h1>
       </header>
       <main>
-        <form action="">
-          <textarea 
-            ref={refInput}
-            name="" 
-            id="input"
-            value={inputValue}
-            onChange={(event) => setInputValue(event.target.value)}
-            autoFocus
-            placeholder="Source text"
-            className="input fild"
-          ></textarea>
-        </form>
+        <InputForm 
+          refInput={refInput} 
+          inputValue={inputValue} 
+          setInputValue={setInputValue} 
+        />
+
         <form action="">
           <textarea 
             name="" 
@@ -206,7 +220,7 @@ function App() {
             placeholder="Result"
             className="output fild"
             onFocus={handleFocus}
-            readOnly
+            onChange={(e) => setInputValue(e.target.value)}
             >
           </textarea>
         </form>
@@ -250,7 +264,7 @@ function App() {
     </form>
     <div className='container'>
       <div className="contact">
-        <a href="" className="contacts__link" tabIndex={-1} >CONTACT US</a>
+        <a href="#/" className="contacts__link" tabIndex={-1} >CONTACT US</a>
         <a href="/#" className="contacts__link" tabIndex={-1} >HOTKEYS FOR QUICK WORK</a>
         <a href="https://war.ukraine.ua/donate/" className="contacts__link" tabIndex={-1} >DONATE TO ARMY OF UKRAINE</a>
       </div>
