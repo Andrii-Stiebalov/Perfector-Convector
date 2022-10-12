@@ -7,6 +7,11 @@ html{
 }
 
 body {
+  overflow: hidden;
+  margin: 0;
+}
+
+.bground {
   background: linear-gradient(121.67deg, rgba(235, 244, 255, 0.5) 20.77%, rgba(0, 85, 251, 0.395) 104.86%);
   backdrop-filter: blur(30px);
   background-repeat: no-repeat;
@@ -183,3 +188,36 @@ main {
     width: 70%;
   }
 }
+
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: white
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+}
+
+.fild::-webkit-scrollbar{
+  width: 10px;
+  height: 5px;
+  margin-top: -10px;
+}
+
+.fild::-webkit-scrollbar-track {
+  cursor: pointer;
+  border-radius: 10%;
+  background-clip: content-box;
+  margin-top: 8px; 
+}
+
+.fild::-webkit-scrollbar-thumb {
+  background: linear-gradient(-90.67deg, rgba(235, 244, 255, 0.5) 0.77%, rgba(0, 85, 251, 0.395) 104.86%);
+  border-radius: 5px;
+}
+
+
+

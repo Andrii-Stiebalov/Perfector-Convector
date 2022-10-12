@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Hotkeys from 'react-hot-keys';
 import { InputForm } from './InputForm';
 
@@ -9,11 +9,9 @@ function App() {
   const [selectedCase, setSelectedCase] = React.useState('caps');
   const [separator, setSeparator] = React.useState('');
   const [isUnderScore, setIsUnderScore] = React.useState(false);
-  const [selectedValue, setSelectedValue] = useState('');
+  // const [selectedValue, setSelectedValue] = useState('');
+  // const [isInputFocus, setIsInputFocus] = useState(false)
   const refInput = useRef(null)
-
-
-  console.log(selectedCase)
 
   const buttons = [
     {name: 'CAPS',
@@ -81,7 +79,7 @@ function App() {
       return inputValue;
     }
 
-    const value = selectedValue || inputValue;
+    const value = inputValue;
 
     let result = '';
 
@@ -110,17 +108,14 @@ function App() {
 
   const outputValue = changeCase();
 
-  // console.log(outputValue)
-
-
-  const selectionChangListener = () => setSelectedValue(getSelectionText())
+  // const selectionChangListener = () => {
+  //     console.log(isInputFocus)
+  //     setSelectedValue(getSelectionText())
+  // }
   
-  document.addEventListener('selectionchange', selectionChangListener)
-
   const handleFocus = (event) => {
     event.target.select();
-
-     document.removeEventListener('selectionchange', selectionChangListener)
+    
   };
 
   const onKeyClearField = (event) => {
@@ -129,6 +124,15 @@ function App() {
       refInput.current.focus()
     }
   }
+
+    useEffect(() => {
+      const element = refInput.current;
+
+      console.log('width',refInput.current ? refInput.current.offsetWidth : 0);
+      console.log(refInput.current)
+      
+    }, []);
+   
 
   document.addEventListener('keydown', onKeyClearField)
 
@@ -176,7 +180,10 @@ function App() {
 
     return text
   } 
+
+    // document.addEventListener('selectionchange', selectionChangListener)
  
+  
   return (
     <>
     <Hotkeys
@@ -206,15 +213,28 @@ function App() {
        <h1 className="title">perfector</h1>
       </header>
       <main>
-        <InputForm 
+        {/* <InputForm 
           refInput={refInput} 
           inputValue={inputValue} 
           setInputValue={setInputValue} 
-        />
+          onFocus={() => Add()}
+        /> */}
+        <form action="">
+          <textarea 
+            ref={refInput}
+            name="input" 
+            id="input"
+            value={inputValue}
+            onChange={(event) => setInputValue(event.target.value)}
+            autoFocus
+            placeholder="Source text"
+            className="input fild"
+          ></textarea>
+        </form>
 
         <form action="">
           <textarea 
-            name="" 
+            name="output" 
             value={outputValue}
             id="output" 
             placeholder="Result"
