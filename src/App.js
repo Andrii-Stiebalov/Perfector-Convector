@@ -1,7 +1,6 @@
 import './App.css';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef,} from 'react';
 import Hotkeys from 'react-hot-keys';
-import { InputForm } from './InputForm';
 
 function App() {
   const [inputValue, setInputValue] = React.useState('');
