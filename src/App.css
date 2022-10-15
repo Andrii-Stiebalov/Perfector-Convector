@@ -2,47 +2,176 @@
   font-family: "FuturaTLig";
   src: url(fonts/FuturaTLigRegular.ttf);
 }
+
+:root {
+  --html-bg: linear-gradient(130deg, rgba(255,255,255,1) 0%, rgba(169,169,169,1) 37%, rgba(35,35,35,1) 100%) ;
+  --background: linear-gradient(121.67deg, rgba(235, 244, 255, 0.5) 20.77%, rgba(0, 85, 251, 0.395) 104.86%);
+  --color-font: black;
+  --fild-color: rgba(255, 255, 255, 0.80);
+  --fild-background: rgba(255, 255, 255, 0.80);
+  --toggler-backgrund: linear-gradient(101.94deg, #FAFAFA -7.35%, #0DE771 -7.34%);
+  --button-color: rgba(255, 255, 255, 0.80);
+  --isActive-font: linear-gradient(92.54deg, #FFFFFF -77.21%, #005EF4 71.09%);
+  --header-bg: white;
+  --header-text-color: #41528F;
+  --input-feild-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  --input-feild: #DFE5F3;
+  --contacts: rgba(235, 238, 246, 0.85);
+  --blur-color: rgba(16, 4, 44, 0);
+  --resizer: url(./Img/stiks.svg);
+  --delete: url(./Img/DELETE.svg);
+  --copy: url(./Img/copy.png);
+}
+
+html[data-theme="dark"] {
+  --html-bg: black;
+  --background:  linear-gradient(107.56deg, #474A99 0%, #474A99 0.01%, rgba(118, 120, 172, 0) 100%);
+  --color-font: white;
+  --fild-background: linear-gradient(129.23deg, rgba(0, 85, 251, 0.474) -3.54%, rgba(0, 28, 83, 0.408) -3.53%, rgba(0, 85, 251, 0.6) 154.08%, rgba(6, 44, 118, 0.288) 154.08%);
+  --toggler-backgrund: ;
+  --button-color: #B3BFEC;
+  --isActive-font: linear-gradient(92.94deg, #1E2BA4 0%, #005EF5 99.69%);
+  --header-bg: #46599B;
+  --header-text-color: #FFFFFF;
+  --header-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
+  --input-feild-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
+  --input-feild: #46599B;
+  --placeholder: white;
+  --contacts: #46599B;
+  --contacts-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
+  --blur-color: rgba(16, 4, 44, 0.55);
+  --resizer: url(./Img/stiks-white.svg);
+  --delete: url(./Img/DELETE-white.svg);
+  --copy: url(./Img/copy-white.svg);
+}
+
 html{
+  width: 100%;
   height: 100%;
+  background: var(--html-bg);
+
 }
 
 body {
-  overflow: hidden;
+  background: var(--background);
+  overflow-x: hidden;
   margin: 0;
+  width: 100%;
+  min-height: 120vh;
+  height: 100%;
+}
+
+.animation_container {
+  width: 100%;
+  height: 100%;
+}
+
+canvas {
+  width: 100%; 
+  height: 100%;
+}
+
+.secret {
+  opacity: 0;
+  margin-left: 15px;
+  transition: 0.5s;
+  cursor: default;
+}
+
+.secret:hover{
+  opacity: 0.3;
+  transition: 5s;
 }
 
 .bground {
-  background: linear-gradient(121.67deg, rgba(235, 244, 255, 0.5) 20.77%, rgba(0, 85, 251, 0.395) 104.86%);
-  backdrop-filter: blur(30px);
-  background-repeat: no-repeat;
-  min-height: 100vh;
-  max-width: 100vw;
+  min-height: 1.2vh;
+  backdrop-filter: blur(15px);
+  background-color: var( --blur-color);
+  min-height: 150vh;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
   margin: 0;
 }
+
 
 .bottomField {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   gap: 5vh;
-  height: max-content;
+  height: 47vh;
+}
+
+.toggler {
+  margin-right: 5px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 36px;
+  height: 25px;
+  
+  border-radius: 15px;
+  border-radius: 15px;
+  padding: 0 5px;
+  transition: 0.3;
+  cursor: pointer;
+}
+
+.toggler-light {
+  background: #46599B;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
+}
+
+.toggler-dark {
+  background: #FFFFFF;
+  box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
+}
+
+.circle {
+  position: absolute;
+  height: 19px;
+  width: 19px;
+  border-radius: 50%;
+}
+
+.circle-light {
+  background: #FFFFFF;
+  box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.3);
+  transform: translate(100%);
+  transition: 0.3s ease-in-out;
+}
+
+.circle-dark {
+  background: #41528F;
+  transform: translate(0);
+  transition: 0.3s ease-in-out;
+
 }
 
 .header {
   margin: 2vh auto 2vh;
-  background-color: white;
-  width: 50vw;
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  height: 37px;
+  background: var( --header-bg);;
   border-radius: 20px;
+  box-shadow: var(--header-shadow);
 }
 
 .title {
-  font-family: "FuturaTLig";
-  font-size: 2vw;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 25px;
+  font-weight: 400;
   margin: 0;
-  line-height: 53px;
-  letter-spacing: 1.47em;
+  text-align: center;
+  letter-spacing: 1.875em;
+  color: var(--header-text-color);
   display: flex;
   justify-content: center;
   text-transform: uppercase;
@@ -56,22 +185,94 @@ main {
 }
 
 .fild {
-  background: linear-gradient(128.85deg, rgba(255, 255, 255, 0.6) 7.91%, rgba(66, 145, 255, 0.12) 100%);
-  box-shadow: inset 7px 3px 4px 3px rgba(0, 0, 0, 0.25);
+  background: var(--fild-background) ;
+  box-shadow: 4px 4px 6px 7px rgba(0, 0, 0, 0.3);
   border-radius: 20px;
-  width: 20vw;
-  height: 20vh;
+  border: none;
+  width: 20vw;  
+  height: 15vw;
   padding: 40px;
   font-size: 18px;
   min-width: 2px;
   min-height: 2px;
-  color: black;
+  color: var(--placeholder);
   scrollbar-color: #005EF4;
+  scroll-behavior: smooth;
+}
+
+.fild::placeholder {
+  color: var(--placeholder);
+}
+
+.fild::-webkit-resizer{
+  background-color: none;
+}
+
+.fild::-webkit-scrollbar-corner {
+  background-color: none
 }
 
 .fild::selection {
-  background-color: #005EF4; 
+  background-color: #41528F; 
   color: #FDFDFD;
+}
+
+.fild:focus {
+  outline-color: #41528F;
+}
+
+.textare {
+  position: relative;
+  display: inline;
+}
+
+.wraper {
+  position: relative;
+}
+
+.wraper::after {
+  content: '';
+  background-image: var(--resizer);
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  height: 20px;
+  width: 20px;
+  display: block;
+}
+
+.delete {
+  background-image: var(--delete);
+}
+
+
+.button-inFild {
+  padding: 0;
+  border: none;
+  position: absolute;
+  top: 15px;
+  right: 5px;
+  height: 20px;
+  width: 50px;
+  z-index: 99;
+  background-repeat: no-repeat;
+  transition-duration: 0.5s;
+  background-color: transparent;
+
+}
+
+.delete:hover {
+  padding: 15px;
+}
+
+.copy {
+  background-image: var(--copy);
+}
+
+.copy:active{
+  opacity: 0;
+  transition: 0.1s;
 }
 
 .button {
@@ -80,14 +281,19 @@ main {
   min-width: 130px ;
   font-size: 25px;
   border: none;
-  background: #FDFDFD;
+  background: var(--button-color);
   border-radius: 8px;
+  transition: 0.1s;
+}
+
+.delete:active {
+  opacity: 0;
   transition: 0.1s;
 }
 
 .button:hover {
   transform: scale(1.1);
-  transition: 0.08s;
+  transition: 0.05s;
 }
 
 .button:active {
@@ -106,7 +312,7 @@ main {
 }
 
 .isActive {
-  background: linear-gradient(92.54deg, #FFFFFF -77.21%, #005EF4 71.09%);
+  background: var(--isActive-font); 
   color: #FFFFFF;
 }
 
@@ -114,11 +320,17 @@ main {
   height: 4vh;
   width: 30vw;
   padding: 5px 15px;
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: var(--input-feild);
+  box-shadow: var(--input-feild-shadow);
   border-radius: 20px;
   outline: none;
   border: none;
+  color: var(--placeholder);
+  font-size: 16px;
+}
+
+.changeSpaceInput::placeholder {
+  color: var(--placeholder);
 }
 
 .inputForm {
@@ -127,9 +339,9 @@ main {
 }
 
 .contact {
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
+  background: var(--contacts);
   border-radius: 20px;
+  box-shadow: var(--contacts-shadow);
   padding: 5px 35px;
   column-gap: 20px;
   display: flex;
@@ -153,6 +365,7 @@ main {
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
+  
 }
 
 @media (max-width: 500px) {
@@ -194,30 +407,26 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background: white
+  background-color: rgba(255, 255, 255, 0.103)
 }
 
 body::-webkit-scrollbar-thumb {
-  border-radius: 20px;
+  border-radius: 5px;
+  background-color: #005ef486;
 }
 
 .fild::-webkit-scrollbar{
-  width: 10px;
+  width: 11px;
   height: 5px;
-  margin-top: -10px;
 }
 
 .fild::-webkit-scrollbar-track {
   cursor: pointer;
   border-radius: 10%;
   background-clip: content-box;
-  margin-top: 8px; 
+  margin-top: 40px 0; 
 }
 
 .fild::-webkit-scrollbar-thumb {
-  background: linear-gradient(-90.67deg, rgba(235, 244, 255, 0.5) 0.77%, rgba(0, 85, 251, 0.395) 104.86%);
-  border-radius: 5px;
-}
-
-
-
+  background: none;
+  border-left: #46599B4D solid 3px;}
