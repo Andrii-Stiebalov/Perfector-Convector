@@ -404,10 +404,12 @@ main {
 
 body::-webkit-scrollbar {
   width: 12px;
+  max-height: 10px;
 }
 
 body::-webkit-scrollbar-track {
-  background-color: rgba(255, 255, 255, 0.103)
+  background-color: rgba(255, 255, 255, 0.103);
+  max-height: 10px;
 }
 
 body::-webkit-scrollbar-thumb {
