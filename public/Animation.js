@@ -291,7 +291,6 @@
 
   an.compositions = an.compositions || {};
   an.compositions['B854ECC437AC4D4C8FA2E81515DA5A49'] = {
-    getStage: function() { return exportRoot.stage; },
     getLibrary: function() { return lib; },
     getSpriteSheet: function() { return ss; },
     getImages: function() { return img; }
@@ -338,20 +337,6 @@
         container.style.width = w * sRatio + 'px';				
         container.style.height = h * sRatio + 'px';			
       });
-      stage.scaleX = pRatio*sRatio;			
-      stage.scaleY = pRatio*sRatio;
-      lastW = iw; lastH = ih; lastS = sRatio;            
-      stage.tickOnUpdate = false;            
-      stage.update();
-      stage.tickOnUpdate = true;		
-    }
-  };
-  an.handleSoundStreamOnTick = function(event) {
-    if(!event.paused){
-      var stageChild = stage.getChildAt(0);
-      if(!stageChild.paused || stageChild.ignorePause){
-        stageChild.syncStreamSounds();
-      }
     }
   };
   an.handleFilterCache = function(event) {
