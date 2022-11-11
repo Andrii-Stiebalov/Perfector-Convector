@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e27fb21d.css",
+    "main.js": "/static/js/main.d012354a.js",
+    "static/js/787.28cb0dcd.chunk.js": "/static/js/787.28cb0dcd.chunk.js",
+    "static/media/FuturaTLigRegular.ttf": "/static/media/FuturaTLigRegular.035eb9c76987361e3256.ttf",
+    "index.html": "/index.html",
+    "static/media/stiks.svg": "/static/media/stiks.c0c1147f3b67d409e03f.svg",
+    "static/media/stiks-white.svg": "/static/media/stiks-white.e2e160613d3a3fad5b0a.svg",
+    "static/media/DELETE.svg": "/static/media/DELETE.c0f4d0a06186339043e7.svg",
+    "static/media/DELETE-white.svg": "/static/media/DELETE-white.3aa9b06083b2632e7966.svg",
+    "static/media/copy-white.svg": "/static/media/copy-white.6d5fbe500b690cdf5c50.svg",
+    "main.e27fb21d.css.map": "/static/css/main.e27fb21d.css.map",
+    "main.d012354a.js.map": "/static/js/main.d012354a.js.map",
+    "787.28cb0dcd.chunk.js.map": "/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e27fb21d.css",
+    "static/js/main.d012354a.js"
+  ]
+}
