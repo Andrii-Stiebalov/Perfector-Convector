@@ -1,15 +1,17 @@
 import './App.css';
-import React, { useCallback, useEffect, useRef, useState,} from 'react';
-import Hotkeys from 'react-hot-keys';
+import React, { useEffect, useRef, useState,} from 'react';
+import { useColorTheme } from './Hooks/useColorTheme';
+import { HotKeys } from './Components/HotKeys/HotKeys';
+import { Contacts } from './Components/Contacts/Contacts';
+import {Header} from './Components/Header/Header';
 
 function App() {
-  const [inputValue, setInputValue] = React.useState('');
-  const [outputValue, setOutputValue] = React.useState('');
-  const [selectedCase, setSelectedCase] = React.useState('caps');
-  const [separator, setSeparator] = React.useState('');
-  const [isUnderScore, setIsUnderScore] = React.useState(false);
-  const [isTab, setIsTab] = React.useState(false);
-  // const [selectedValue, setSelectedValue] = useState('');
+  const [inputValue, setInputValue] =useState('');
+  const [outputValue, setOutputValue] = useState('');
+  const [selectedCase, setSelectedCase] = useState('caps');
+  const [separator, setSeparator] = useState('');
+  const [isUnderScore, setIsUnderScore] = useState(false);
+  const [isTab, setIsTab] = useState(false);
   const refInput = useRef(null);
 
   const buttons = [
@@ -36,11 +38,6 @@ function App() {
     setSelectedCase(caseType);
   };
 
-
-  React.useEffect(() => {
-
-  }, [selectedCase]);
-
   const inversCase = (value) => {
     let result = '';
     const upperValue = value.toLocaleUpperCase();
@@ -54,7 +51,7 @@ function App() {
   };
 
   const underCase = (value) => {
-    const separetSymbol = !separator ? '_' : separator;
+    const separetSymbol = separator || '_';
     const arrOfWords = value.split(' ');
 
     return arrOfWords.join(separetSymbol);
@@ -84,10 +81,10 @@ function App() {
 
     switch (selectedCase) {
     case 'caps':
-      result =  value.toLocaleUpperCase();
+      result = value.toLocaleUpperCase();
       break;
     case 'lower' :
-      result =  value.toLowerCase();
+      result = value.toLowerCase();
       break;
     case 'capital':
       result = capitalCase(value);
@@ -110,11 +107,6 @@ function App() {
   }, [inputValue, selectedCase, isUnderScore, separator]);
  
 
-  // const selectionChangListener = () => {
-  //     console.log(isInputFocus)
-  //     setSelectedValue(getSelectionText())
-  // }
-  
   const handleFocus = (event) => {
     if(isTab) {
       
@@ -163,39 +155,10 @@ function App() {
       return;
     }
     const nextCase = buttons[nextIndex];
-    console.log(nextIndex);
     setSelectedCase(currentIndex);
     setSelectedCase(nextCase.id);
   };
 
-  function getSelectionText(event) {
-    if(event.key === 'Tab') {
-      setIsTab(true);
-    }
-  }
-
-  document.addEventListener('keydown',  getSelectionText);
-
-  const COLOR_THEME = {
-    light: 'light',
-    dark: 'dark'
-  };
-  
-  const useColorTheme = () => {
-    const [colorTheme, setColorTheme] = useState(COLOR_THEME.light);
-    const changeColorTheme = useCallback((theme = '') => {
-      const currentTheme = theme === '' ? COLOR_THEME.light : theme;
-      setColorTheme(currentTheme);
-      document.documentElement.setAttribute('data-theme', currentTheme);
-    }, []);
-    const toggleColorTheme = useCallback(() => {
-      colorTheme === COLOR_THEME.light
-        ? changeColorTheme(COLOR_THEME.dark)
-        : changeColorTheme(COLOR_THEME.light);
-    }, [colorTheme, changeColorTheme]);
-    return { colorTheme, changeColorTheme, toggleColorTheme };
-  };
- 
   const { colorTheme, toggleColorTheme } = useColorTheme();
 
   const onChangeTheme = () => {
@@ -219,45 +182,17 @@ function App() {
 
   return (
     <div className={`bground ${colorTheme === 'dark' ? 'bground-dark' : ''}`}>
-      <Hotkeys
-        keyName='alt+x'
-        filter={() => {
-          return true;
-        }}
-        onKeyDown={onKeyDownHotKeyX}
+      <HotKeys 
+        onKeyDownHotKeyX={onKeyDownHotKeyX}
+        onKeyDownHotKeyZ={onKeyDownHotKeyZ}
+        setIsUnderScore={setIsUnderScore}
       />
-      <Hotkeys
-        keyName='alt+z'
-        filter={() => {
-          return true;
-        }}
-        onKeyDown={onKeyDownHotKeyZ}
-      />
-      <Hotkeys
-        keyName='alt+c'
-        filter={() => {
-          return true;
-        }}
-        onKeyDown={() => setIsUnderScore(!isUnderScore)}
-      />
-      <div className="area" >
-        <header className="header">
-          <div className='secret'>have a good day</div>
-          <h1 className="title">perfector</h1>
-          <div
-            className={`toggler ${colorTheme === 'dark' ? 'toggler-dark' : 'toggler-light'}`}
-            onClick={onChangeTheme}
-          >
-            <div className={`circle ${colorTheme === 'dark' ? 'circle-dark' : 'circle-light'}`}></div>
-          </div>
-        </header>
+      <div className="area">
+        <Header 
+          onChangeTheme={onChangeTheme}
+          colorTheme={colorTheme}
+        /> 
         <main>
-          {/* <InputForm 
-          refInput={refInput} 
-          inputValue={inputValue} 
-          setInputValue={setInputValue} 
-          onFocus={() => Add()}
-        /> */}
           <form className='textare' action="">
             <button
               tabIndex={-1}
@@ -279,7 +214,6 @@ function App() {
               ></textarea>
             </div>
           </form>
-
           <form className='textare' action="">
             <button 
               tabIndex={-1}
@@ -303,8 +237,6 @@ function App() {
         </main>
         <div className="bottomField">
           <div action="get" className="selectFild">
-        
-
             {buttons.map(button => {
               const {id, name} = button;
 
@@ -341,13 +273,7 @@ function App() {
               }}
             />
           </form>
-          <div className='container'>
-            <div className="contact">
-              <a href="#/" className="contacts__link" tabIndex={-1} >CONTACT US</a>
-              <a href="/#" className="contacts__link" tabIndex={-1} >HOTKEYS FOR QUICK WORK</a>
-              <a href="https://war.ukraine.ua/donate/" className="contacts__link" tabIndex={-1} >DONATE TO ARMY OF UKRAINE</a>
-            </div>
-          </div>
+          <Contacts />
         </div>
       </div>
     </div>
